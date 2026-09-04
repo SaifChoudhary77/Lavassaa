@@ -1,0 +1,307 @@
+/* ============================================
+   LAVASSAA RESTAURANT SAHARANPUR
+   Multi-Cuisine Vegetarian Restaurant
+   Custom Styles & Animations
+   ============================================ */
+
+/* CSS Variables */
+:root {
+  --primary: #1a1a1a;
+  --secondary: #2d2d2d;
+  --accent: #722f37;
+  --gold: #c9a96e;
+  --dark: #1a1a1a;
+  --light: #faf8f5;
+  --cream: #f5f0e8;
+  --text: #2c1810;
+  --muted: #6b7280;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background-color: var(--light);
+}
+
+::selection {
+  background-color: var(--gold);
+  color: var(--dark);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8956a;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ============================================
+   SCROLL REVEAL UTILITIES
+   ============================================ */
+
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-up { transform: translateY(30px); }
+.reveal-left { transform: translateX(-30px); }
+.reveal-right { transform: translateX(30px); }
+
+.reveal-up.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+#navbar {
+  background: transparent;
+}
+
+#navbar.scrolled {
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Nav Link Underline Animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ============================================
+   CAROUSEL STYLES
+   ============================================ */
+
+.carousel-track {
+  will-change: transform;
+}
+
+.carousel-slide {
+  transition: opacity 0.3s ease;
+}
+
+/* ============================================
+   GALLERY LIGHTBOX
+   ============================================ */
+
+#lightbox {
+  transition: opacity 0.3s ease;
+}
+
+#lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* ============================================
+   BUTTON PREMIUM EFFECTS
+   ============================================ */
+
+a[href="#menu"],
+a[href="#contact"],
+a[href="#cuisines"] {
+  position: relative;
+  overflow: hidden;
+}
+
+a[href="#menu"]::before,
+a[href="#contact"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+a[href="#menu"]:hover::before,
+a[href="#contact"]:hover::before {
+  left: 100%;
+}
+
+/* ============================================
+   FAQ ACCORDION
+   ============================================ */
+
+.faq-question i {
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 1023px) {
+  .carousel-prev,
+  .carousel-next {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #home h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  .reveal-up,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   PRELOADER FADE OUT
+   ============================================ */
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   FLOATING CONTACT BUTTONS
+   ============================================ */
+
+.floating-contact {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+}
+
+.float-btn {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.20);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.float-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+  color: #fff;
+}
+
+.whatsapp-btn { background: #25D366; }
+.call-btn { background: #2563eb; }
+
+@media (max-width: 576px) {
+  .floating-contact {
+    right: 15px;
+    bottom: 75px;
+    gap: 10px;
+  }
+  .float-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 9px;
+  }
+  #back-to-top {
+    margin-bottom: 50px;
+  }
+}
+
+
